@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Flowers</title>
+</head>
+
+<body>
+    <div class="greetings">
+        <span>T</span>
+        <span>E</span>
+        <span>A</span>
+        <span>M</span>
+        <span>O</span>
+    </div>
+    <div class="description">
+    <span>¿Quieres vivir una vida a mi lado?</span>
+    </div>
+
+    <div class="button">
+        <button class="botones no">
+            <a href="flowers.html" style="color: #fff;">CLICK AQUÍ</a>
+        </button>
+    </div>
+
+
+<script>
+const buttonNo = document.querySelector('.no');
+let moveCount = 0;
+
+
+// Crear el div de mensaje especial, oculto inicialmente
+const specialDiv = document.createElement('div');
+specialDiv.textContent = 'Tu jamás serás espectadora mi amor <3';
+specialDiv.style.display = 'none';
+specialDiv.style.marginTop = '20px';
+specialDiv.style.fontSize = '1.3em';
+specialDiv.style.textAlign = 'center';
+specialDiv.style.color = '#e75480';
+document.body.appendChild(specialDiv);
+
+const moveButton = (e) => {
+    let numberToMoveY = Math.floor(Math.random() * 90) + 1;
+    let numberToMoveX = Math.floor(Math.random() * 90) + 1;
+    e.target.style.position = 'absolute';
+    e.target.style.top = numberToMoveY + "vh";
+    e.target.style.right = numberToMoveX + "vw";
+    moveCount++;
+    if (moveCount === 10) {
+        setTimeout(() => {
+            alert('Parece que si quieres, tus deseos son órdenes. Ya puedes dar click.');
+            // Permitir seleccionar el botón quitando el evento de mover
+            buttonNo.removeEventListener('mouseenter', moveButton);
+            // Mostrar el mensaje especial
+            specialDiv.style.display = 'block';
+        }, 100);
+    }
+};
+
+if (buttonNo) {
+    buttonNo.addEventListener('mouseenter', moveButton);
+}
+</script>
+
+</body>
+
+</html>
